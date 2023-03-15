@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #link table{
+          border:collapse;
+          text-align : "center";
+        }
+    </style>
+</head>
+<body>
+
+    <div id = 'link'>
+      <table border='1'>
+        <tr>
+            <td>! Firstname</td>
+            <td>- Lastname</td>
+            <td>$ Email</td>
+            <td>^ Contact</td>
+            <td>* College</td>
+        </tr>
+      </table>
+    </div>
+
+    <label for = 'fname' >Search</label>
+    <input type = 'text' id = 'fname' placeholder="search here.."  value="<%=searchstr%>" onchange="function1(this.value)"/>
+    <a id = 'btn'  >OK</a>
+
+  <script>
+    function function1(subs)
+    {
+        var string1 = subs;
+        var string2=subs;
+        string1= string1.replace('!','&fname=');
+        string1 =string1.replace('-','&lname=');
+        string1 =string1 .replace('$','&email=');
+        string1 = string1.replace('^','&contact=');
+       string1 =string1 .replace('*','&college=');
+
+        document.getElementById('btn').setAttribute('href',`/pageee?${string1}&searchstr=${string2}`);
+    }
+  </script>
+
+<H1>Data from database</H1>
+<table border = '4' align="center">
+    <tr>
+        <th>Student_Id </th>
+        <th>Student_Fname</th>
+        <th>Student_Lname</th>
+        <th>Student_Email</th>
+        <th>Student_Contact</th>
+        <th>Student_CollegeId</th>
+        <th>Student_City</th>
+        <th>Student_DOB</th>
+    </tr>
+
+    <% for(i = 0;i<data.length;i++) {%>
+         <tr>
+            <td><%=data[i].sd_id %></td>
+            <td><%=data[i].sd_fname %></td>
+            <td><%=data[i].sd_lname %></td>
+            <td><%=data[i].sd_email %></td>
+            <td><%=data[i].sd_contact %></td>
+            <td><%=data[i].sd_collegeid %></td>
+            <td><%=data[i].sd_city %></td>
+            <td><%=data[i].sd_dob %></td>
+         </tr>
+    <% } %>
+</table>
+</body>
+</html>
